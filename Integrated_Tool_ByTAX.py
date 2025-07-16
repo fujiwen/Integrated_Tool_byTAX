@@ -33,7 +33,7 @@ class IntegratedTool:
         # 首先检查过期时间
         check_expiration_time()
         
-        self.root.title("供应商对账工具集ByTAX")
+        self.root.title("供应商对账工具集byTAX")
         
         # 设置窗口大小并居中
         self.set_window_geometry(400, 400)
@@ -62,8 +62,8 @@ class IntegratedTool:
         # 创建供应商对帐确认函按钮
         self.classification_btn = ttk.Button(
             button_frame,
-            text="供应商对帐确认函",
-            command=self.launch_classification_tool,
+            text="供应商对帐确认函byTAX",
+            command=self.launch_classification_tool_byTAX,
             width=25
         )
         self.classification_btn.pack(pady=10)
@@ -107,8 +107,8 @@ class IntegratedTool:
         """启动供应商供货明细表工具"""
         try:
             logging.info("正在启动供应商供货明细表工具")
-            Bldbuy_Recon_UI = self._import_module("Bldbuy_Recon_UI")
-            logging.info("成功导入 Bldbuy_Recon_UI 模块")
+            Bldbuy_Recon_UI = self._import_module("Bldbuy_Recon_ByTAX")
+            logging.info("成功导入 Bldbuy_Recon_ByTAX 模块")
             
             # 创建新窗口，并设置为主窗口的子窗口
             child_window = tk.Toplevel(self.root)
@@ -139,12 +139,12 @@ class IntegratedTool:
             logging.error(error_msg, exc_info=True)
             messagebox.showerror("错误", error_msg)
     
-    def launch_classification_tool(self):
-        """启动供应商对帐确认函"""
+    def launch_classification_tool_byTAX(self):
+        """启动供应商对帐确认函byTAX"""
         try:
             logging.info("正在启动供应商对帐确认函")
-            Product_Classification_Tool = self._import_module("Product_Classification_Tool")
-            logging.info("成功导入 Product_Classification_Tool 模块")
+            Product_Classification_Tool = self._import_module("Product_Classification_Tool_ByTAX")
+            logging.info("成功导入 Product_Classification_Tool_ByTAX 模块")
             
             # 创建新窗口，并设置为主窗口的子窗口
             child_window = tk.Toplevel(self.root)
