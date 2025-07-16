@@ -1,0 +1,49 @@
+name: Build Integrated Tool by TAX
+
+on:
+  push:
+    paths:
+      - '**.py'  # 匹配所有 Python 文件的更改
+      - '**.spec'  # 匹配所有 spec 文件的更改
+  pull_request:
+    paths:
+      - '**.py'  # 匹配所有 Python 文件的更改
+      - '**.spec'  # 匹配所有 spec 文件的更改
+
+jobs:
+  build:
+    runs-on: windows-latest
+ 
+    steps:
+    - uses: actions/checkout@v4
+ 
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.13'
+ 
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyinstaller==5.13.2
+        pip install pandas numpy openpyxl xlrd pillow tk
+        pip install -r requirements.txt
+        python -c "import sys; print('Python Path:', sys.path)"
+        python -c "import os; print('Current Directory:', os.getcwd())"
+        python -c "import os; print('Directory Contents:', os.listdir())"
+ 
+    - name: Build App
+      run: |
+        dir
+        python -c "Bldbuy_Recon_ByTAX; print('Successfully imported Bldbuy_Recon_UI')"
+        python -c "import Product_Classification_Tool_ByTAX; print('Successfully imported Product_Classification_Tool')"
+        pyinstaller --clean integrated_tool.spec
+      env:
+        CC: mingw32-gcc
+        PYTHONPATH: .
+ 
+    - name: Upload App
+      uses: actions/upload-artifact@v4
+      with:
+        name: integrated_tool_By_TAX
+        path: dist/供应商对账工具集.exe
