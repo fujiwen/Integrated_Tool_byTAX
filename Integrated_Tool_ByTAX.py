@@ -33,7 +33,7 @@ class IntegratedTool:
         # 首先检查过期时间
         check_expiration_time()
         
-        self.root.title("供应商对账工具集")
+        self.root.title("供应商对账工具集ByTAX")
         
         # 设置窗口大小并居中
         self.set_window_geometry(400, 400)
